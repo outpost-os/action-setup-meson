@@ -28,6 +28,6 @@ runs:
     - name: Deploy cross-files
       run: |
         mkdir -p $GITHUB_HOME/.meson
-        cp $GITHUB_WORKSPACE/crossfiles/*.ini $GITHUB_HOME/.meson/
+        cp -a $GITHUB_WORKSPACE/crossfiles/*.ini $GITHUB_HOME/.meson/
         echo "MESON_CROSS_FILES=$GITHUB_HOME/.meson" >> $GITHUB_ENV
       shell: bash
