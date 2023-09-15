@@ -1,0 +1,33 @@
+name: 'setup-meson'
+description: 'Prepare environment'
+inputs:
+  token:
+    description: 'github token to use'
+    type: string
+    required: true
+    default: ''
+  crossfiles_git:
+    description: 'meson crossfiles git repository'
+    required: false
+    default: 'outpost/meson-cross-files'
+  crossfiles_ref:
+    description: 'meson crossfiles git ref'
+    required: false
+    default: 'main'
+
+runs:
+  using: "composite"
+  steps:
+    - name: Clone cross-files
+      uses: actions/checkout@v3
+      with:
+        ref:  ${{ inputs.crossfiles_ref }}
+        repository: ${{ inputs.crossfiles_git }}
+        path: crossfiles
+        token: ${{ inputs.token }}
+    - name: Deploy cross-files
+      run: |
+        mkdir -p $GITHUB_HOME/.meson
+        cp $GITHUB_WORKSPACE/crossfiles/*.ini $GITHUB_HOME/.meson/
+        echo "MESON_CROSS_FILES=$GITHUB_HOME/.meson" >> $GITHUB_ENV
+      shell: bash

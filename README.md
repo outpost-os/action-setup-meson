@@ -1,7 +1,8 @@
 # action-setup-meson
 GH action that sets up the meson environment for workflows that need it.
 This action installs meson cross files in docker image for a workflow job.
-This may be a prerequisite step before `meson build` step.
+This may be a prerequisite step before `meson build` step, the installation path
+is exported through `MESON_CROSS_FILES` environment variable.
 
 ## usage
 
