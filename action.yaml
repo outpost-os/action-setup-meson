@@ -27,7 +27,7 @@ runs:
         token: ${{ inputs.token }}
     - name: Deploy cross-files
       run: |
-        mkdir -p $GITHUB_HOME/.meson/cross
-        cp -a $GITHUB_WORKSPACE/crossfiles/*.ini $GITHUB_HOME/.meson/cross
-        echo "MESON_CROSS_FILES=$GITHUB_HOME/.meson" >> $GITHUB_ENV
+        mkdir -p $HOME/.local/share/meson/cross
+        cp -a $GITHUB_WORKSPACE/crossfiles/*.ini $HOME/.local/share/meson/cross
+        echo "MESON_CROSS_FILES=$HOME/.local/share/meson/cross" >> $GITHUB_ENV
       shell: bash
